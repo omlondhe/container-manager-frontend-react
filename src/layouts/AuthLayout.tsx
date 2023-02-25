@@ -8,10 +8,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useContextValue } from "../context/StateProvider";
 import { actionTypes } from "../context/reducer";
 import jwtDecode from "jwt-decode";
+import { MODE } from "../context/types";
 
 function AuthLayout() {
   const navigate = useNavigate();
-  const [{ user }, dispatch] = useContextValue();
+  const [{ user, mode }, dispatch] = useContextValue();
 
   useEffect(() => {
     if (!user) {
@@ -19,7 +20,7 @@ function AuthLayout() {
       if (localStorageUser) {
         dispatch({
           type: actionTypes.SET_USER,
-          payload: {
+          user: {
             ...jwtDecode(localStorageUser),
             token: localStorageUser,
           },
@@ -37,15 +38,31 @@ function AuthLayout() {
 
   return (
     <Fragment>
-      <video
-        src="/media/videos/auth-background-white-mode.mp4"
-        autoPlay
-        muted
-        loop
-        className="authLayout__background"
-      ></video>
+      {mode === MODE.light ? (
+        <video
+          src={"/media/videos/auth-background-white-mode.mp4"}
+          autoPlay
+          muted
+          loop
+          className="home__background"
+        />
+      ) : (
+        <video
+          src={"/media/videos/auth-background-dark-mode.mp4"}
+          autoPlay
+          muted
+          loop
+          className="home__background"
+        />
+      )}
       <div className="authLayout">
-        <section className="authLayout__section">
+        <section
+          className={`authLayout__section ${
+            mode === MODE.light
+              ? "authLayout__section__light"
+              : "authLayout__section__dark"
+          }`}
+        >
           <Outlet context={{ showToast }} />
         </section>
       </div>
@@ -59,7 +76,7 @@ function AuthLayout() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme={mode === MODE.light ? "light" : "dark"}
       />
     </Fragment>
   );

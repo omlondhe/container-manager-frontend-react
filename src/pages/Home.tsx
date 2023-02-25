@@ -1,25 +1,59 @@
 import { Link } from "react-router-dom";
 import "../styles/pages/Home.css";
+import { useContextValue } from "../context/StateProvider";
+import { MODE } from "../context/types";
 
 function Home() {
+  const [{ mode }] = useContextValue();
+  console.log(mode);
   return (
     <div className="home">
-      <video
-        src="/media/videos/auth-background-white-mode.mp4"
-        autoPlay
-        muted
-        loop
-        className="home__background"
-      ></video>
-      <p className="home__title">ConMan</p>
-      <p className="home__quote">
+      {mode === MODE.light ? (
+        <video
+          src={"/media/videos/auth-background-white-mode.mp4"}
+          autoPlay
+          muted
+          loop
+          className="home__background"
+        />
+      ) : (
+        <video
+          src={"/media/videos/auth-background-dark-mode.mp4"}
+          autoPlay
+          muted
+          loop
+          className="home__background"
+        />
+      )}
+      <p
+        className={`home__title ${
+          mode === MODE.dark ? "home__title__dark" : "home__title__light"
+        }`}
+      >
+        ConMan
+      </p>
+      <p
+        className={`home__quote ${
+          mode === MODE.dark ? "home__quote__dark" : "home__quote__light"
+        }`}
+      >
         We manage your containers because no we can manage them better!
       </p>
       <div className="home__links">
-        <Link to={`/auth/login`} className="home__link">
+        <Link
+          to={`/auth/login`}
+          className={`home__link ${
+            mode === MODE.dark ? "home__link__dark" : "home__link__light"
+          }`}
+        >
           Log in
         </Link>
-        <Link to={`/auth/signup`} className="home__link">
+        <Link
+          to={`/auth/signup`}
+          className={`home__link ${
+            mode === MODE.dark ? "home__link__dark" : "home__link__light"
+          }`}
+        >
           Sign up
         </Link>
       </div>

@@ -13,3 +13,11 @@
   text-transform: uppercase;
   text-decoration: underline;
 }
+
+.signup__title__light {
+  color: black;
+}
+
+.signup__title__dark {
+  color: white;
+}

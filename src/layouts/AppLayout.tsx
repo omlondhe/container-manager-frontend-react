@@ -5,19 +5,44 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { actionTypes } from "../context/reducer";
 import jwtDecode from "jwt-decode";
 import { paths } from "../router/paths";
+import { ThemeProvider, createTheme } from "@mui/material";
+import { MODE } from "../context/types";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
+const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+  },
+});
 
 function AppLayout() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [{ user }, dispatch] = useContextValue();
+  const [{ user, mode }, dispatch] = useContextValue();
 
   useEffect(() => {
     if (!user) {
       const localStorageUser = localStorage.getItem(`user`);
+      const localStorageMode = localStorage.getItem(`mode`);
+
+      dispatch({
+        type: actionTypes.CHANGE_MODE,
+        mode: localStorageMode
+          ? localStorageMode === "dark"
+            ? MODE.dark
+            : MODE.light
+          : MODE.light,
+      });
+
       if (localStorageUser) {
         dispatch({
           type: actionTypes.SET_USER,
-          payload: {
+          user: {
             ...jwtDecode(localStorageUser),
             token: localStorageUser,
           },
@@ -32,10 +57,10 @@ function AppLayout() {
   }, [user, pathname, navigate, dispatch]);
 
   return (
-    <Fragment>
+    <ThemeProvider theme={mode === MODE.light ? lightTheme : darkTheme}>
       <Navbar />
       <Outlet />
-    </Fragment>
+    </ThemeProvider>
   );
 }
 

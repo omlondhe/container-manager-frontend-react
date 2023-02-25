@@ -7,10 +7,11 @@ import HistoryItem from "../components/HistoryItem";
 import { actionTypes } from "../context/reducer";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { MODE } from "../context/types";
 
 function History() {
   const navigate = useNavigate();
-  const [{ user }, dispatch] = useContextValue();
+  const [{ user, mode }, dispatch] = useContextValue();
   const [responseDataList, setResponseDataList] = useState<CalculationTypes[]>(
     []
   );
@@ -27,7 +28,7 @@ function History() {
       if (localStorageUser) {
         dispatch({
           type: actionTypes.SET_USER,
-          payload: {
+          user: {
             ...jwtDecode(localStorageUser),
             token: localStorageUser,
           },
@@ -42,7 +43,11 @@ function History() {
   }, [user]);
 
   return (
-    <div className="history">
+    <div
+      className={`history ${
+        mode === MODE.light ? "history__light" : "history__dark"
+      }`}
+    >
       {responseDataList.map((responseData, index) => (
         <HistoryItem
           index={index}

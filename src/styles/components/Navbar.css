@@ -6,16 +6,25 @@
   height: 75px;
   position: fixed;
   top: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  background-color: rgba(0, 0, 0, 0.5);
-  background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0 -1px 0 0 hsla(0, 0%, 100%, 0.1),
-    0 1px 7px 0.4px whitesmoke;
   backdrop-filter: saturate(180%) blur(5px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 100;
+}
+
+.navbar__light {
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 -1px 0 0 hsla(0, 0%, 100%, 0.1),
+    0 1px 7px 0.4px rgb(245, 245, 245);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.navbar__dark {
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 -1px 0 0 hsla(0, 0%, 100%, 0.1),
+    0 1px 7px 0.4px rgb(10, 10, 10);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 .navbar__title__section {
@@ -28,7 +37,14 @@
   font-size: xx-large;
   font-family: "Itim", cursive;
   font-weight: bold;
+}
+
+.navbar__title__light {
   color: #242424;
+}
+
+.navbar__title__dark {
+  color: #dadada;
 }
 
 .navbar__subtitle {
@@ -36,6 +52,14 @@
   font-family: "Great Vibes", cursive;
   border-top: 1px solid lightgrey;
   padding-top: 2px;
+}
+
+.navbar__subtitle__light {
+  color: #242424;
+}
+
+.navbar__subtitle__dark {
+  color: #dadada;
 }
 
 .navbar__actions {
@@ -53,6 +77,13 @@
   border-radius: 7px;
   margin: 0 2px 0 2px;
   text-decoration: none;
-  color: black;
   cursor: pointer;
+}
+
+.navbar__link__light {
+  color: black;
+}
+
+.navbar__link__dark {
+  color: white;
 }

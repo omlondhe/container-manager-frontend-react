@@ -1,3 +1,5 @@
+import { useContextValue } from "../context/StateProvider";
+import { MODE } from "../context/types";
 import "../styles/components/FormButton.css";
 
 interface FormButtonProps {
@@ -5,7 +7,16 @@ interface FormButtonProps {
 }
 
 function FormButton({ value }: FormButtonProps) {
-  return <input type="submit" value={value} className="formButton" />;
+  const [{ mode }] = useContextValue();
+  return (
+    <input
+      type="submit"
+      value={value}
+      className={`formButton ${
+        mode === MODE.light ? "formButton__light" : "formButton__dark"
+      }`}
+    />
+  );
 }
 
 export default FormButton;

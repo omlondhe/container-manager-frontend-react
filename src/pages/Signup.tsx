@@ -5,9 +5,12 @@ import FormButton from "../components/FormButton";
 import Space from "../components/Space";
 import axios from "axios";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { MODE } from "../context/types";
+import { useContextValue } from "../context/StateProvider";
 
 function Signup() {
   const navigate = useNavigate();
+  const [{ mode }] = useContextValue();
   const { showToast } = useOutletContext<{ showToast: Function }>();
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
@@ -71,7 +74,13 @@ function Signup() {
 
   return (
     <form className="signup" onSubmit={handleSignUp}>
-      <p className="signup__title">Sign up</p>
+      <p
+        className={`signup__title ${
+          mode === MODE.light ? "signup__title__light" : "signup__title__dark"
+        }`}
+      >
+        Sign up
+      </p>
       <Space height={21} />
       <InputField
         id={"firstName"}

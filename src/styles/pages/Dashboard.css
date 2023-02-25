@@ -1,5 +1,4 @@
 .dashboard {
-  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,15 +6,34 @@
   padding: 0 7px 7px 7px;
 }
 
+.dashboard__light {
+  background-color: white;
+}
+
+.dashboard__dark {
+  background-color: black;
+}
+
 .dashboard__input {
   width: calc(100% - 22px);
   outline: none;
   font-size: 16px;
   padding: 7px 11px 7px 11px;
-  border: 1px solid rgb(230, 230, 230);
   border-radius: 7px;
   transition: border 333ms ease-in-out;
   max-width: 500px;
+}
+
+.dashboard__input__light {
+  color: black;
+  background-color: rgb(250, 250, 250);
+  border: 1px solid lightgray;
+}
+
+.dashboard__input__dark {
+  color: white;
+  background: #141414;
+  border: 1px solid gray;
 }
 
 .dashboard__input:focus {
@@ -30,10 +48,6 @@
   margin-bottom: 21px;
   flex: 1;
   overflow: scroll;
-  /* background: whitesmoke; */
-  border: 1px solid lightgrey;
-  border-left: none;
-  border-right: none;
   border-radius: 11px;
 }
 

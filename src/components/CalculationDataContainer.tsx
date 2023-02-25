@@ -87,17 +87,26 @@ function CalculationDataContainer({
       <Chip
         label={`Total items : ${responseData?.totalItems}`}
         variant="outlined"
-        style={{ marginRight: 4 }}
+        style={{
+          marginRight: 4,
+          marginBottom: 4,
+        }}
       />
       <Chip
         label={`Items utilized: ${responseData?.itemsUtilized}`}
         variant="outlined"
-        style={{ marginRight: 4 }}
+        style={{
+          marginRight: 4,
+          marginBottom: 4,
+        }}
       />
       <Chip
         label={`Items excluded: ${responseData?.itemsRemaining}`}
         variant="outlined"
-        style={{ marginRight: 4 }}
+        style={{
+          marginRight: 4,
+          marginBottom: 4,
+        }}
       />
       <Space height={11} />
 
@@ -116,17 +125,26 @@ function CalculationDataContainer({
       <Chip
         label={`Total weights : ${responseData?.totalWeights}`}
         variant="outlined"
-        style={{ marginRight: 4 }}
+        style={{
+          marginRight: 4,
+          marginBottom: 4,
+        }}
       />
       <Chip
         label={`Weights utilized: ${responseData?.weightsUtilized}`}
         variant="outlined"
-        style={{ marginRight: 4 }}
+        style={{
+          marginRight: 4,
+          marginBottom: 4,
+        }}
       />
       <Chip
         label={`Weights excluded: ${responseData?.weightsRemaining}`}
         variant="outlined"
-        style={{ marginRight: 4 }}
+        style={{
+          marginRight: 4,
+          marginBottom: 4,
+        }}
       />
       <Space height={11} />
 
@@ -145,17 +163,26 @@ function CalculationDataContainer({
       <Chip
         label={`Total costs : ${responseData?.totalCost}`}
         variant="outlined"
-        style={{ marginRight: 4 }}
+        style={{
+          marginRight: 4,
+          marginBottom: 4,
+        }}
       />
       <Chip
         label={`Costs utilized: ${responseData?.costUtilized}`}
         variant="outlined"
-        style={{ marginRight: 4 }}
+        style={{
+          marginRight: 4,
+          marginBottom: 4,
+        }}
       />
       <Chip
         label={`Costs excluded: ${responseData?.costRemaining}`}
         variant="outlined"
-        style={{ marginRight: 4 }}
+        style={{
+          marginRight: 4,
+          marginBottom: 4,
+        }}
       />
       <Space height={11} />
     </Fragment>

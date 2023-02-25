@@ -6,19 +6,17 @@ import { useContextValue } from "../context/StateProvider";
 import DashboardCard from "../components/DashboardCard";
 import { CalculationTypes, DataType } from "../utils/types";
 import "../styles/pages/Dashboard.css";
-import Navbar from "../components/Navbar";
 import Space from "../components/Space";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import InputField from "../components/InputField";
-import { ContextType, User } from "../context/types";
+import { MODE } from "../context/types";
 import Dialog from "../components/Dialog";
 
 function Dashboard() {
   const itemRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const [dataLength, setDataLength] = useState<number>(0);
-  const [{ user }, dispatch] = useContextValue();
+  const [{ user, mode }, dispatch] = useContextValue();
   const [weight, setWeight] = useState<string>("");
   const [data, setData] = useState<DataType[]>([]);
   const [responseData, setResponseData] = useState<CalculationTypes>();
@@ -31,7 +29,7 @@ function Dashboard() {
       if (localStorageUser) {
         dispatch({
           type: actionTypes.SET_USER,
-          payload: {
+          user: {
             ...jwtDecode(localStorageUser),
             token: localStorageUser,
           },
@@ -94,13 +92,20 @@ function Dashboard() {
       setResponseData(response.data);
       setOpenCalculationDialog(true);
     } catch (error) {
-      toast("Internal server error.", { type: "error" });
-      console.log(error);
+      toast(
+        `${((error as AxiosError).response?.data as { error: string }).error}`,
+        { type: "error" }
+      );
+      console.log((error as AxiosError).response?.data);
     }
   }
 
   return (
-    <div className="dashboard">
+    <div
+      className={`dashboard ${
+        mode === MODE.light ? "dashboard__light" : "dashboard__dark"
+      }`}
+    >
       <Space height={100} />
       <Dialog
         open={openCalculationDialog}
@@ -116,7 +121,11 @@ function Dashboard() {
         value={weight}
         onChange={(e) => setWeight(e.target.value)}
         required={true}
-        className="dashboard__input"
+        className={`dashboard__input ${
+          mode === MODE.light
+            ? "dashboard__input__light"
+            : "dashboard__input__dark"
+        }`}
       />
       <div className="dashboard__cards" ref={itemRef}>
         {data?.map((d, index) => (
@@ -151,7 +160,7 @@ function Dashboard() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme={mode === MODE.light ? "light" : "dark"}
       />
     </div>
   );

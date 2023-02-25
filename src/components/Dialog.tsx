@@ -13,8 +13,9 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import { CalculationTypes } from "../utils/types";
 import axios from "axios";
-import { User } from "../context/types";
+import { MODE, User } from "../context/types";
 import CalculationDataContainer from "./CalculationDataContainer";
+import { useContextValue } from "../context/StateProvider";
 
 interface DialogProps {
   open: boolean;
@@ -33,6 +34,8 @@ const Transition = forwardRef(function Transition(
 });
 
 function Dialog({ open, setOpen, responseData, user }: DialogProps) {
+  const [{ mode }] = useContextValue();
+
   async function save() {
     try {
       await axios.post("http://127.0.0.1:3000/api/save-calculation", {
@@ -52,20 +55,36 @@ function Dialog({ open, setOpen, responseData, user }: DialogProps) {
       onClose={() => setOpen(false)}
       TransitionComponent={Transition}
     >
-      <AppBar sx={{ position: "relative", background: "#242424" }}>
+      <AppBar
+        sx={{
+          position: "relative",
+          background: mode === MODE.light ? "white" : "#242424",
+        }}
+      >
         <Toolbar>
           <IconButton
             edge="start"
-            color="inherit"
             onClick={() => setOpen(false)}
             aria-label="close"
           >
             <CloseIcon />
           </IconButton>
-          <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+          <Typography
+            sx={{
+              ml: 2,
+              flex: 1,
+              color: mode === MODE.light ? "black" : "white",
+            }}
+            variant="h6"
+            component="div"
+          >
             Calculation information
           </Typography>
-          <Button autoFocus color="inherit" onClick={save}>
+          <Button
+            autoFocus
+            style={{ color: mode === MODE.light ? "black" : "white" }}
+            onClick={save}
+          >
             Save
           </Button>
         </Toolbar>

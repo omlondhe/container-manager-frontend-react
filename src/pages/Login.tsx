@@ -5,13 +5,16 @@ import Space from "../components/Space";
 import FormButton from "../components/FormButton";
 import axios from "axios";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { useContextValue } from "../context/StateProvider";
+import { MODE } from "../context/types";
 
 function Login() {
   const navigate = useNavigate();
+  const [{ mode }] = useContextValue();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { showToast } = useOutletContext<{ showToast: Function }>();
-
+  console.log(mode);
   async function handleLogIn(e: FormEvent) {
     e.preventDefault();
 
@@ -47,7 +50,13 @@ function Login() {
 
   return (
     <form className="login" onSubmit={handleLogIn}>
-      <p className="login__title">Log in</p>
+      <p
+        className={`login__title ${
+          mode === MODE.light ? "login__title__light" : "login__title__dark"
+        }`}
+      >
+        Log in
+      </p>
       <Space height={21} />
       <InputField
         id={"email"}

@@ -1,13 +1,21 @@
 .inputField {
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 7px;
   padding-top: 7px;
   padding-bottom: 7px;
   display: grid;
   place-items: center;
-  background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: saturate(180%) blur(5px);
+}
+
+.inputField__light {
+  border: 1px solid lightgray;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.inputField__dark {
+  border: 1px solid gray;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .inputField__container {
@@ -39,31 +47,61 @@
   background: none;
 }
 
+.inputField__input__light {
+  color: black;
+}
+
+.inputField__input__dark {
+  color: white;
+}
+
 .inputField__placeholder:focus-within .inputField__placeholder__text {
   font-size: 14px;
-  background-color: white;
   backdrop-filter: saturate(180%) blur(5px);
   top: -27px;
   left: -11px;
   padding-left: 7px;
   padding-right: 7px;
   border-radius: 7px;
+}
+
+.inputField__placeholder__light:focus-within .inputField__placeholder__text {
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: white;
+}
+
+.inputField__placeholder__dark:focus-within .inputField__placeholder__text {
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  border-left: 1px solid rgba(0, 0, 0, 0.4);
+  border-right: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  background-color: black;
+}
+
+.inputField__valued__input__placeholder {
+  font-size: 14px;
+  top: -27px;
+  left: -11px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 7px;
+}
+
+.inputField__valued__input__placeholder__light {
+  background-color: rgba(255, 255, 255, 0.4);
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   border-left: 1px solid rgba(255, 255, 255, 0.4);
   border-right: 1px solid rgba(255, 255, 255, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.inputField__valued__input__placeholder {
-  font-size: 14px;
-  background-color: rgba(255, 255, 255, 0.4);
-  top: -27px;
-  left: -11px;
-  padding-left: 7px;
-  padding-right: 7px;
-  border-radius: 7px;
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  border-left: 1px solid rgba(255, 255, 255, 0.4);
-  border-right: 1px solid rgba(255, 255, 255, 0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+.inputField__valued__input__placeholder__dark {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  border-left: 1px solid rgba(0, 0, 0, 0.4);
+  border-right: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }

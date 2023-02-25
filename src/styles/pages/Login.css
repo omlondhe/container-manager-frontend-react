@@ -13,3 +13,11 @@
   text-transform: uppercase;
   text-decoration: underline;
 }
+
+.login__title__light {
+  color: black;
+}
+
+.login__title__dark {
+  color: white;
+}

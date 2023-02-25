@@ -3,6 +3,8 @@ import "../styles/components/DashboardCard.css";
 import { DataType } from "../utils/types";
 import Space from "./Space";
 import RemoveIcon from "@mui/icons-material/RemoveCircleOutlineRounded";
+import { MODE } from "../context/types";
+import { useContextValue } from "../context/StateProvider";
 
 interface DashboardCardProps {
   data: DataType;
@@ -21,8 +23,14 @@ function DashboardCard({
   setWeight,
   removeCard,
 }: DashboardCardProps) {
+  const [{ mode }] = useContextValue();
+
   return (
-    <div className="dashboardCard">
+    <div
+      className={`dashboardCard ${
+        mode === MODE.light ? "dashboardCard__light" : "dashboardCard__dark"
+      }`}
+    >
       <input
         id={`${index}1`}
         name={`${index}1`}
@@ -31,7 +39,11 @@ function DashboardCard({
         value={data.name}
         onChange={(e) => setName(e.target.value, index)}
         required={true}
-        className="dashboardCard__input"
+        className={`dashboardCard__input ${
+          mode === MODE.light
+            ? "dashboardCard__input__light"
+            : "dashboardCard__input__dark"
+        }`}
       />
       <Space height={11} />
       <div className="dashboardCard__subSection">
@@ -43,7 +55,11 @@ function DashboardCard({
           value={data.cost}
           onChange={(e) => setCost(e.target.value, index)}
           required={true}
-          className="dashboardCard__input"
+          className={`dashboardCard__input ${
+            mode === MODE.light
+              ? "dashboardCard__input__light"
+              : "dashboardCard__input__dark"
+          }`}
         />
         <Space width={11} />
         <input
@@ -54,16 +70,26 @@ function DashboardCard({
           value={data.weight}
           onChange={(e) => setWeight(e.target.value, index)}
           required={true}
-          className="dashboardCard__input"
+          className={`dashboardCard__input ${
+            mode === MODE.light
+              ? "dashboardCard__input__light"
+              : "dashboardCard__input__dark"
+          }`}
         />
       </div>
       <Space height={21} />
-      <div className="dashboardCard__top">
-        <p className="dashboardCard__title">
+      <div
+        className={`dashboardCard__bottom ${
+          mode === MODE.light
+            ? "dashboardCard__bottom__light"
+            : "dashboardCard__bottom__dark"
+        }`}
+      >
+        <p className="dashboardCard__bottom__title">
           {data.name ? data.name : `Item ${index + 1}`}
         </p>
         <IconButton onClick={() => removeCard(index)}>
-          <RemoveIcon />
+          <RemoveIcon color="error" />
         </IconButton>
       </div>
     </div>
