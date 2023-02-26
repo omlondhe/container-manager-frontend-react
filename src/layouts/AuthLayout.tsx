@@ -1,5 +1,4 @@
 import { Outlet, useNavigate } from "react-router-dom";
-
 import "../styles/layouts/AuthLayout.css";
 import { Fragment, useEffect } from "react";
 import { TypeOptions } from "react-toastify/dist/types";

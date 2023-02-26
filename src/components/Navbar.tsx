@@ -16,7 +16,7 @@ function Navbar() {
   const [{ user, mode }, dispatch] = useContextValue();
 
   function logout() {
-    localStorage.clear();
+    localStorage.removeItem(`user`);
     dispatch({
       type: actionTypes.REMOVE_USER,
     });
