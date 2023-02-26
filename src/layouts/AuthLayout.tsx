@@ -39,7 +39,9 @@ function AuthLayout() {
     <Fragment>
       {mode === MODE.light ? (
         <video
-          src={"/media/videos/auth-background-white-mode.mp4"}
+          src={
+            "https://drive.google.com/file/d/1r8wx1kOrZoa5fGZ5oyCBPO8ZVuDE5D5L/view?usp=sharing"
+          }
           autoPlay
           muted
           loop
@@ -47,7 +49,9 @@ function AuthLayout() {
         />
       ) : (
         <video
-          src={"/media/videos/auth-background-dark-mode.mp4"}
+          src={
+            "https://drive.google.com/file/d/18Q4HnrC_ayC6x-FS2ogJs0Pco14q-uDU/view?usp=sharing"
+          }
           autoPlay
           muted
           loop
