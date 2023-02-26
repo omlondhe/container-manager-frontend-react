@@ -11,22 +11,24 @@ function Home() {
       {mode === MODE.light ? (
         <video
           src={
-            "https://drive.google.com/file/d/1r8wx1kOrZoa5fGZ5oyCBPO8ZVuDE5D5L/view?usp=sharing"
+            "https://drive.google.com/uc?export=download&id=1r8wx1kOrZoa5fGZ5oyCBPO8ZVuDE5D5L"
           }
           autoPlay
           muted
           loop
           className="home__background"
+          itemType="video/mp4"
         />
       ) : (
         <video
           src={
-            "https://drive.google.com/file/d/18Q4HnrC_ayC6x-FS2ogJs0Pco14q-uDU/view?usp=sharing"
+            "https://drive.google.com/uc?export=download&id=18Q4HnrC_ayC6x-FS2ogJs0Pco14q-uDU"
           }
           autoPlay
           muted
           loop
           className="home__background"
+          itemType="video/mp4"
         />
       )}
       <p
