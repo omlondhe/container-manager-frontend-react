@@ -39,17 +39,14 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:3000/api/auth/check-if-email-exist",
-        {
-          email,
-        }
-      );
+      const response = await axios.post("/api/auth/check-if-email-exist", {
+        email,
+      });
 
       if (response.data.emailExist) showToast("Email already exist.", "error");
       else {
         try {
-          await axios.post("http://127.0.0.1:3000/api/auth/signup", {
+          await axios.post("/api/auth/signup", {
             firstName,
             middleName,
             lastName,

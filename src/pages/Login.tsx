@@ -19,22 +19,16 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:3000/api/auth/check-if-email-exist",
-        {
-          email,
-        }
-      );
+      const response = await axios.post("/api/auth/check-if-email-exist", {
+        email,
+      });
 
       if (response.data.emailExist) {
         try {
-          const response = await axios.post(
-            "http://127.0.0.1:3000/api/auth/login",
-            {
-              email,
-              password,
-            }
-          );
+          const response = await axios.post("/api/auth/login", {
+            email,
+            password,
+          });
           const data = response.data;
           localStorage.setItem("user", data.user);
           navigate("/dashboard");

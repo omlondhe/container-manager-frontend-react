@@ -82,7 +82,7 @@ function Dashboard() {
         costs.push(d.cost);
         weights.push(d.weight);
       });
-      const response = await axios.post("http://127.0.0.1:3000/api/calculate", {
+      const response = await axios.post("/api/calculate", {
         weight,
         names,
         costs,

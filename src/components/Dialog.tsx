@@ -38,7 +38,7 @@ function Dialog({ open, setOpen, responseData, user }: DialogProps) {
 
   async function save() {
     try {
-      await axios.post("http://127.0.0.1:3000/api/save-calculation", {
+      await axios.post("/api/save-calculation", {
         responseData,
         token: user?.token,
       });
