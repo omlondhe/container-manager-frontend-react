@@ -9,27 +9,19 @@ function Home() {
   return (
     <div className="home">
       {mode === MODE.light ? (
-        <video
-          src={
-            "https://drive.google.com/uc?export=download&id=1r8wx1kOrZoa5fGZ5oyCBPO8ZVuDE5D5L"
-          }
-          autoPlay
-          muted
-          loop
-          className="home__background"
-          itemType="video/mp4"
-        />
+        <video autoPlay muted loop className="home__background">
+          <source
+            src="https://drive.google.com/uc?export=download&id=1r8wx1kOrZoa5fGZ5oyCBPO8ZVuDE5D5L"
+            itemType="video/mp4"
+          />
+        </video>
       ) : (
-        <video
-          src={
-            "https://drive.google.com/uc?export=download&id=18Q4HnrC_ayC6x-FS2ogJs0Pco14q-uDU"
-          }
-          autoPlay
-          muted
-          loop
-          className="home__background"
-          itemType="video/mp4"
-        />
+        <video autoPlay muted loop className="home__background">
+          <source
+            src="https://drive.google.com/uc?export=download&id=18Q4HnrC_ayC6x-FS2ogJs0Pco14q-uDU"
+            itemType="video/mp4"
+          />
+        </video>
       )}
       <p
         className={`home__title ${
