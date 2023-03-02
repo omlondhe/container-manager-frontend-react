@@ -51,7 +51,7 @@ function AuthLayout() {
           muted
           loop
           className="home__background"
-          src="/media/videos/auth-background-dark-mode.mp4"
+          src="/media/videos/auth-background-dark.mp4"
         />
       )}
       <div className="authLayout">
