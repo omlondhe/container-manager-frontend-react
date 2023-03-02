@@ -13,6 +13,14 @@
   place-items: center;
 }
 
+.authLayout__background__light {
+  background: linear-gradient(whitesmoke, white);
+}
+
+.authLayout__background__dark {
+  background: linear-gradient(black, grey);
+}
+
 .authLayout__section {
   border-radius: 21px;
   width: calc(100% - 11px);

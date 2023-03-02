@@ -5,23 +5,25 @@ import { MODE } from "../context/types";
 
 function Home() {
   const [{ mode }] = useContextValue();
-  console.log(mode);
+
   return (
     <div className="home">
       {mode === MODE.light ? (
-        <video autoPlay muted loop className="home__background">
-          <source
-            src="https://drive.google.com/uc?export=download&id=1r8wx1kOrZoa5fGZ5oyCBPO8ZVuDE5D5L"
-            itemType="video/mp4"
-          />
-        </video>
+        <video
+          autoPlay
+          muted
+          loop
+          className="home__background"
+          src="/media/videos/auth-background-light-mode.mov"
+        />
       ) : (
-        <video autoPlay muted loop className="home__background">
-          <source
-            src="https://drive.google.com/uc?export=download&id=18Q4HnrC_ayC6x-FS2ogJs0Pco14q-uDU"
-            itemType="video/mp4"
-          />
-        </video>
+        <video
+          autoPlay
+          muted
+          loop
+          className="home__background"
+          src="/media/videos/auth-background-dark-mode.mp4"
+        />
       )}
       <p
         className={`home__title ${
