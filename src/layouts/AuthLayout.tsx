@@ -43,7 +43,7 @@ function AuthLayout() {
           muted
           loop
           className="home__background"
-          src="/media/videos/auth-background-light-mode.mov"
+          src="/media/videos/auth-background-light-mode.mp4"
         />
       ) : (
         <video
