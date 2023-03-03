@@ -14,7 +14,7 @@ function Home() {
           muted
           loop
           className="home__background"
-          src="/media/videos/auth-background-light-mode.mp4"
+          src="https://ik.imagekit.io/omlondhe/auth-background-light-mode.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1677862300903"
         />
       ) : (
         <video
@@ -22,7 +22,7 @@ function Home() {
           muted
           loop
           className="home__background"
-          src="/media/videos/auth-background-dark.mp4"
+          src="https://ik.imagekit.io/omlondhe/auth-background-dark.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1677862303640"
         />
       )}
       <p
