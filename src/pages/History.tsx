@@ -36,7 +36,7 @@ function History() {
       } else navigate(`/auth/login`, { replace: true });
     } else {
       axios
-        .get(`http://localhost:3000/api/get-calculations?email=${user?.email}`)
+        .get(`/api/get-calculations?email=${user?.email}`)
         .then((response) => setResponseDataList(response.data))
         .catch((error) => console.log(error));
     }
