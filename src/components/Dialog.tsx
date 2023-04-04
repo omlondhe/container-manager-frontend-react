@@ -16,6 +16,7 @@ import axios from "axios";
 import { MODE, User } from "../context/types";
 import CalculationDataContainer from "./CalculationDataContainer";
 import { useContextValue } from "../context/StateProvider";
+import { getDomain } from "../utils/devdetector";
 
 interface DialogProps {
   open: boolean;
@@ -38,7 +39,7 @@ function Dialog({ open, setOpen, responseData, user }: DialogProps) {
 
   async function save() {
     try {
-      await axios.post("/api/save-calculation", {
+      await axios.post(`${getDomain()}/api/save-calculation`, {
         responseData,
         token: user?.token,
       });

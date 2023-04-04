@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { MODE } from "../context/types";
 import { useContextValue } from "../context/StateProvider";
+import { getDomain } from "../utils/devdetector";
 
 function Signup() {
   const navigate = useNavigate();
@@ -39,14 +40,17 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post("/api/auth/check-if-email-exist", {
-        email,
-      });
+      const response = await axios.post(
+        `${getDomain()}/api/auth/check-if-email-exist`,
+        {
+          email,
+        }
+      );
 
       if (response.data.emailExist) showToast("Email already exist.", "error");
       else {
         try {
-          await axios.post("/api/auth/signup", {
+          await axios.post(`${getDomain()}/api/auth/signup`, {
             firstName,
             middleName,
             lastName,

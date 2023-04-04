@@ -8,6 +8,7 @@ import { actionTypes } from "../context/reducer";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { MODE } from "../context/types";
+import { getDomain } from "../utils/devdetector";
 
 function History() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function History() {
       } else navigate(`/auth/login`, { replace: true });
     } else {
       axios
-        .get(`/api/get-calculations?email=${user?.email}`)
+        .get(`${getDomain()}/api/get-calculations?email=${user?.email}`)
         .then((response) => setResponseDataList(response.data))
         .catch((error) => console.log(error));
     }

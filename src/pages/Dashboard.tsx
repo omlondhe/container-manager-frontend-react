@@ -11,6 +11,7 @@ import axios, { AxiosError } from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { MODE } from "../context/types";
 import Dialog from "../components/Dialog";
+import { getDomain } from "../utils/devdetector";
 
 function Dashboard() {
   const itemRef = useRef<HTMLDivElement | null>(null);
@@ -82,7 +83,7 @@ function Dashboard() {
         costs.push(d.cost);
         weights.push(d.weight);
       });
-      const response = await axios.post("/api/calculate", {
+      const response = await axios.post(`${getDomain()}/api/calculate`, {
         weight,
         names,
         costs,
