@@ -15,7 +15,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { showToast } = useOutletContext<{ showToast: Function }>();
-  console.log(mode);
+
   async function handleLogIn(e: FormEvent) {
     e.preventDefault();
 
