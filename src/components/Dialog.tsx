@@ -39,7 +39,7 @@ function Dialog({ open, setOpen, responseData, user }: DialogProps) {
 
   async function save() {
     try {
-      await axios.post(`${getDomain()}/api/save-calculation`, {
+      await axios.post(`/api/save-calculation`, {
         responseData,
         token: user?.token,
       });

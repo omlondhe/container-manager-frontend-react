@@ -83,7 +83,7 @@ function Dashboard() {
         costs.push(d.cost);
         weights.push(d.weight);
       });
-      const response = await axios.post(`${getDomain()}/api/calculate`, {
+      const response = await axios.post(`/api/calculate`, {
         weight,
         names,
         costs,

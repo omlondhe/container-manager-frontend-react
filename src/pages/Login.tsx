@@ -21,12 +21,12 @@ function Login() {
 
     try {
       const response = await axios.get(
-        `${getDomain()}/api/auth/check-if-email-exist?email=${email}`
+        `/api/auth/check-if-email-exist?email=${email}`
       );
 
       if (response.data.emailExist) {
         try {
-          const response = await axios.post(`${getDomain()}/api/auth/login`, {
+          const response = await axios.post(`/api/auth/login`, {
             email,
             password,
           });
