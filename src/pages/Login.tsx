@@ -20,11 +20,8 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${getDomain()}/api/auth/check-if-email-exist`,
-        {
-          email,
-        }
+      const response = await axios.get(
+        `${getDomain()}/api/auth/check-if-email-exist?email=${email}`
       );
 
       if (response.data.emailExist) {
