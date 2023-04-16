@@ -34,6 +34,17 @@ function Signup() {
       showToast("Password must be at least 8 characters long.", "error");
       return;
     }
+    if (
+      !/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password) ||
+      !/\d/.test(password) ||
+      !/[a-zA-Z]/.test(password)
+    ) {
+      showToast(
+        `Password must contain a character, a number and a special symbol.`,
+        "error"
+      );
+      return;
+    }
     if (password !== confirmPassword) {
       showToast("Password are not matching.", "error");
       return;
@@ -139,6 +150,9 @@ function Signup() {
         setValue={setConfirmPassword}
         required={true}
       />
+      <p className="signup__password__hint">
+        Passwords must contain letters, symbols and numbers
+      </p>
       <Space height={21} />
       <FormButton value="Sign up" />
     </form>

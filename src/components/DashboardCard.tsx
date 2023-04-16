@@ -12,6 +12,7 @@ interface DashboardCardProps {
   setName: Function;
   setCost: Function;
   setWeight: Function;
+  setQuantity: Function;
   removeCard: Function;
 }
 
@@ -21,9 +22,12 @@ function DashboardCard({
   setName,
   setCost,
   setWeight,
+  setQuantity,
   removeCard,
 }: DashboardCardProps) {
   const [{ mode }] = useContextValue();
+
+  if (data.quantity === 0) removeCard(index);
 
   return (
     <div
@@ -38,7 +42,6 @@ function DashboardCard({
         type="text"
         value={data.name}
         onChange={(e) => setName(e.target.value, index)}
-        required={true}
         className={`dashboardCard__input ${
           mode === MODE.light
             ? "dashboardCard__input__light"
@@ -50,11 +53,13 @@ function DashboardCard({
         <input
           id={`${index}2`}
           name={`${index}2`}
-          placeholder={`Cost`}
+          placeholder={`Cost (required)`}
           type="number"
           value={data.cost}
           onChange={(e) => setCost(e.target.value, index)}
           required={true}
+          min={0}
+          pattern="[0-9]"
           className={`dashboardCard__input ${
             mode === MODE.light
               ? "dashboardCard__input__light"
@@ -65,11 +70,13 @@ function DashboardCard({
         <input
           id={`${index}3`}
           name={`${index}3`}
-          placeholder={`Weight`}
+          placeholder={`Weight (required)`}
           type="number"
           value={data.weight}
+          min={0}
           onChange={(e) => setWeight(e.target.value, index)}
           required={true}
+          pattern="[0-9]"
           className={`dashboardCard__input ${
             mode === MODE.light
               ? "dashboardCard__input__light"
@@ -77,6 +84,23 @@ function DashboardCard({
           }`}
         />
       </div>
+      <Space height={21} />
+      <input
+        id={`${index}4`}
+        name={`${index}4`}
+        placeholder={`Quantity (required)`}
+        type="number"
+        min={1}
+        value={data.quantity}
+        onChange={(e) => setQuantity(e.target.value, index)}
+        required={true}
+        pattern="[0-9]"
+        className={`dashboardCard__input ${
+          mode === MODE.light
+            ? "dashboardCard__input__light"
+            : "dashboardCard__input__dark"
+        }`}
+      />
       <Space height={21} />
       <div
         className={`dashboardCard__bottom ${

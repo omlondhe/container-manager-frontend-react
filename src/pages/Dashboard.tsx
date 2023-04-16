@@ -1,6 +1,12 @@
 import jwtDecode from "jwt-decode";
 import { actionTypes } from "../context/reducer";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import {
+  FormEvent,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { useContextValue } from "../context/StateProvider";
 import DashboardCard from "../components/DashboardCard";
@@ -18,7 +24,7 @@ function Dashboard() {
   const navigate = useNavigate();
   const [dataLength, setDataLength] = useState<number>(0);
   const [{ user, mode }, dispatch] = useContextValue();
-  const [weight, setWeight] = useState<string>("");
+  const [weight, setWeight] = useState<number>(0);
   const [data, setData] = useState<DataType[]>([]);
   const [responseData, setResponseData] = useState<CalculationTypes>();
   const [openCalculationDialog, setOpenCalculationDialog] =
@@ -55,11 +61,16 @@ function Dashboard() {
     setData([...data]);
   }
   function setItemCost(cost: string, index: number) {
-    data[index].cost = cost;
+    data[index].cost = Number(cost);
     setData([...data]);
   }
   function setItemWeight(weight: string, index: number) {
-    data[index].weight = weight;
+    data[index].weight = Number(weight);
+    setData([...data]);
+  }
+
+  function setItemQuantity(quantity: string, index: number) {
+    data[index].quantity = Number(quantity);
     setData([...data]);
   }
 
@@ -73,15 +84,18 @@ function Dashboard() {
     setData([...data]);
   }
 
-  async function calculate() {
+  async function calculate(e: FormEvent) {
+    e.preventDefault();
     try {
       const names: string[] = [];
-      const costs: string[] = [];
-      const weights: string[] = [];
+      const costs: number[] = [];
+      const weights: number[] = [];
       data.forEach((d) => {
-        names.push(d.name);
-        costs.push(d.cost);
-        weights.push(d.weight);
+        for (let i = 0; i < d.quantity; i++) {
+          names.push(d.name);
+          costs.push(d.cost);
+          weights.push(d.weight);
+        }
       });
       const response = await axios.post(`/api/calculate`, {
         weight,
@@ -102,7 +116,7 @@ function Dashboard() {
   }
 
   return (
-    <div
+    <form
       className={`dashboard ${
         mode === MODE.light ? "dashboard__light" : "dashboard__dark"
       }`}
@@ -119,8 +133,10 @@ function Dashboard() {
         name={`weight`}
         placeholder={`Weight capacity`}
         type="number"
+        pattern="[0-9]"
         value={weight}
-        onChange={(e) => setWeight(e.target.value)}
+        min={0}
+        onChange={(e) => setWeight(Number(e.target.value))}
         required={true}
         className={`dashboard__input ${
           mode === MODE.light
@@ -137,17 +153,19 @@ function Dashboard() {
             setName={setItemName}
             setCost={setItemCost}
             setWeight={setItemWeight}
+            setQuantity={setItemQuantity}
             removeCard={removeCard}
           />
         ))}
       </div>
-      <button onClick={addItem} className="dashboard__button">
+      <button onClick={addItem} className="dashboard__button" type="button">
         Add an item
       </button>
       <Space height={7} />
       <button
         onClick={calculate}
         className="dashboard__button dashboard__button__submit"
+        type="submit"
       >
         Calculate
       </button>
@@ -163,7 +181,7 @@ function Dashboard() {
         pauseOnHover
         theme={mode === MODE.light ? "light" : "dark"}
       />
-    </div>
+    </form>
   );
 }
 

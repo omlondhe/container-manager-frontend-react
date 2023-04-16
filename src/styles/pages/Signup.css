@@ -21,3 +21,13 @@
 .signup__title__dark {
   color: white;
 }
+
+.signup__password__hint {
+  font-size: 11px;
+  color: gray;
+  backdrop-filter: blur(11px);
+  padding: 2px 14px 2px 14px;
+  margin-top: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+}

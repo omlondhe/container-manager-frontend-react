@@ -18,29 +18,31 @@ function Login() {
 
   async function handleLogIn(e: FormEvent) {
     e.preventDefault();
+    if (password.length < 8)
+      showToast(`Password must be at least 8 characters long.`, "error");
+    else
+      try {
+        const response = await axios.get(
+          `/api/auth/check-if-email-exist?email=${email}`
+        );
 
-    try {
-      const response = await axios.get(
-        `/api/auth/check-if-email-exist?email=${email}`
-      );
-
-      if (response.data.emailExist) {
-        try {
-          const response = await axios.post(`/api/auth/login`, {
-            email,
-            password,
-          });
-          const data = response.data;
-          localStorage.setItem("user", data.user);
-          navigate("/dashboard");
-        } catch (error) {
-          showToast("Wrong password!", "error");
-        }
-      } else showToast("Email does not exist, try signing up!", "error");
-    } catch (error) {
-      showToast("Internal server error.", "error");
-      console.log(error);
-    }
+        if (response.data.emailExist) {
+          try {
+            const response = await axios.post(`/api/auth/login`, {
+              email,
+              password,
+            });
+            const data = response.data;
+            localStorage.setItem("user", data.user);
+            navigate("/dashboard");
+          } catch (error) {
+            showToast("Wrong password!", "error");
+          }
+        } else showToast("Email does not exist, try signing up!", "error");
+      } catch (error) {
+        showToast("Internal server error.", "error");
+        console.log(error);
+      }
   }
 
   return (

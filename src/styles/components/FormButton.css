@@ -6,6 +6,7 @@
   box-shadow: inset 0 -1px 0 0 hsla(0, 0%, 100%, 0.1);
   backdrop-filter: saturate(180%) blur(5px);
   cursor: pointer;
+  transition: all 251ms ease-in-out;
 }
 
 .formButton__light {
@@ -18,4 +19,19 @@
   color: white;
   border: 1px solid gray;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.formButton:focus {
+  border-radius: 21px;
+  animation: buttonAnimation 500ms 200ms ease-in-out infinite;
+}
+
+@keyframes buttonAnimation {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }

@@ -1,7 +1,8 @@
 export class DataType {
   name: string = "";
-  cost: string = "";
-  weight: string = "";
+  cost: number = 0;
+  weight: number = 0;
+  quantity: number = 1;
 }
 
 export class CalculationTypes {
